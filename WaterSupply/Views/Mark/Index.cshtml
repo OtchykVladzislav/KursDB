@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CounterMark>
+
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <form asp-controller="Mark" asp-action="Index" method="post">
+                    <p>
+                        Название: <input type="text" name="search" />
+                        <input type="submit" value="Поиск" />
+                    </p>
+                </form>
+                <div class="col-sm-6">
+                    <a asp-controller="Mark" asp-action="Create" class="btn btn-success">
+                        <i class="material-icons">&#xE147;</i>
+                        <span>Добавить марку</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Builder)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ServiceLife)
+                    </th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.Builder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => item.ServiceLife)
+                        </td>
+                        <td>
+                            <a asp-action="Update" asp-controller="Mark" asp-route-id="@item.Id" class="edit">Редактирование</a>
+                            <a asp-action="Delete" asp-controller="Mark" asp-route-id="@item.Id" class="delete">Удаление</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
